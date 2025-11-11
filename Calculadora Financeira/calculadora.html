@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadoras Financeiras</title>
+    <link rel="stylesheet" href="calculadora.css">    
+</head>
+<body>
+    <div class="container">
+        <!-- Tela do Menu -->
+        <div id="menuScreen" class="screen active">
+            <div class="header">
+                <h1>Calculadoras Financeiras</h1>
+                <p>Escolha a calculadora que deseja usar</p>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card" onclick="showScreen('pontoEquilibrio')">
+                    <div class="menu-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                    </div>
+                    <h2>Ponto de Equilíbrio</h2>
+                    <p>Calcule quantas unidades você precisa vender para cobrir todos os custos da sua empresa</p>
+                </div>
+
+                <div class="menu-card" onclick="showScreen('lucratividade')">
+                    <div class="menu-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h2>Lucratividade</h2>
+                    <p>Descubra qual o percentual de lucro sobre suas vendas e avalie a eficiência do negócio</p>
+                </div>
+
+                <div class="menu-card" onclick="showScreen('rentabilidade')">
+                    <div class="menu-card-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h2>Rentabilidade</h2>
+                    <p>Calcule o retorno sobre o investimento e veja se seu negócio está gerando valor</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela Ponto de Equilíbrio -->
+        <div id="pontoEquilibrio" class="screen">
+            <button class="back-button" onclick="showScreen('menuScreen')">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Voltar
+            </button>
+
+            <div class="card">
+                <h2 class="card-title">Calculadora de Ponto de Equilíbrio</h2>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label class="label">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Custos Fixos Mensais
+                        </label>
+                        <input type="number" id="custoFixo" placeholder="Ex: 10000" step="0.01">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="label">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                            </svg>
+                            Preço de Venda Unitário
+                        </label>
+                        <input type="number" id="precoVenda" placeholder="Ex: 50" step="0.01">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="label">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Custo Variável Unitário
+                        </label>
+                        <input type="number" id="custoVariavel" placeholder="Ex: 20" step="0.01">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="calcularPontoEquilibrio()">
+                        Calcular Ponto de Equilíbrio
+                    </button>
+                    <button class="btn-secondary" onclick="limparPontoEquilibrio()">
+                        Limpar
+                    </button>
+                </div>
+
+                <div id="resultsPE" class="results">
+                    <div class="results-card">
+                        <h3 class="results-title">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                            Resultados
+                        </h3>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-label">Unidades Necessárias</div>
+                                <div class="stat-value purple" id="unidades">0</div>
+                                <div class="stat-unit">unidades/mês</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-label">Receita de Equilíbrio</div>
+                                <div class="stat-value pink" id="receita">R$ 0,00</div>
+                                <div class="stat-unit">por mês</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-label">Margem de Contribuição</div>
+                                <div class="stat-value indigo" id="margem">R$ 0,00</div>
+                                <div class="stat-unit">por unidade</div>
+                            </div>
+                        </div>
+
+                        <div class="interpretation" id="interpretationPE"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela Lucratividade -->
+        <div id="lucratividade" class="screen">
+            <button class="back-button" onclick="showScreen('menuScreen')">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Voltar
+            </button>
+
+            <div class="card">
+                <h2 class="card-title">Calculadora de Lucratividade</h2>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label class="label">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Receita Total
+                        </label>
+                        <input type="number" id="receitaTotal" placeholder="Ex: 50000" step="0.01">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="label">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Lucro Líquido
+                        </label>
+                        <input type="number" id="lucroLiquido" placeholder="Ex: 10000" step="0.01">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="calcularLucratividade()">
+                        Calcular Lucratividade
+                    </button>
+                    <button class="btn-secondary" onclick="limparLucratividade()">
+                        Limpar
+                    </button>
+                </div>
+
+                <div id="resultsLucr" class="results">
+                    <div class="results-card">
+                        <h3 class="results-title">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                            Resultados
+                        </h3>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-label">Lucratividade</div>
+                                <div class="stat-value green" id="lucrPercent">0%</div>
+                                <div class="stat-unit">percentual</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-label">Receita Total</div>
+                                <div class="stat-value purple" id="lucrReceita">R$ 0,00</div>
+                                <div class="stat-unit">valor informado</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-label">Lucro Líquido</div>
+                                <div class="stat-value pink" id="lucrLucro">R$ 0,00</div>
+                                <div class="stat-unit">valor informado</div>
+                            </div>
+                        </div>
+
+                        <div class="interpretation" id="interpretationLucr"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela Rentabilidade -->
+        <div id="rentabilidade" class="screen">
+            <button class="back-button" onclick="showScreen('menuScreen')">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Voltar
+            </button>
+
+            <div class="card">
+                <h2 class="card-title">Calculadora de Rentabilidade (ROI)</h2>
+
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label class="label">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Lucro Líquido
+                        </label>
+                        <input type="number" id="rentLucroLiquido" placeholder="Ex: 15000" step="0.01">
+                    </div>
+
+                    <div class="input-group">
+                        <label class="label">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Investimento Total
+                        </label>
+                        <input type="number" id="investimento" placeholder="Ex: 100000" step="0.01">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="calcularRentabilidade()">
+                        Calcular Rentabilidade
+                    </button>
+                    <button class="btn-secondary" onclick="limparRentabilidade()">
+                        Limpar
+                    </button>
+                </div>
+
+                <div id="resultsRent" class="results">
+                    <div class="results-card">
+                        <h3 class="results-title">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                            Resultados
+                        </h3>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-label">Rentabilidade (ROI)</div>
+                                <div class="stat-value orange" id="rentPercent">0%</div>
+                                <div class="stat-unit">retorno sobre investimento</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-label">Lucro Líquido</div>
+                                <div class="stat-value purple" id="rentLucro">R$ 0,00</div>
+                                <div class="stat-unit">valor informado</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-label">Investimento</div>
+                                <div class="stat-value pink" id="rentInvest">R$ 0,00</div>
+                                <div class="stat-unit">valor informado</div>
+                            </div>
+                        </div>
+
+                        <div class="interpretation" id="interpretationRent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="calculadora.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>
